@@ -1,0 +1,37 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "macos",
+            "hidden": true,
+            "condition": {
+              "type": "equals",
+              "lhs": "${hostSystemName}",
+              "rhs": "Darwin"
+            },
+            "generator": "Xcode",
+            "warnings": {"dev": true, "deprecated": true},
+            "cacheVariables": {
+              "QT_VERSION": "6",
+              "CMAKE_OSX_DEPLOYMENT_TARGET": "11.0",
+              "CMAKE_C_COMPILER": "/usr/bin/clang",
+              "CMAKE_CXX_COMPILER": "/usr/bin/clang++",
+              "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "macos-x86_64",
+            "inherits": "macos",
+            "displayName": "macOS Apple Intel",
+            "description": "obs-studio for macOS 11.0+ (Intel)",
+            "binaryDir": "${sourceDir}/build_x86_64",
+            "cacheVariables": {
+              "CMAKE_OSX_ARCHITECTURES": "x86_64",
+              "CMAKE_PREFIX_PATH": {
+                "type": "PATH",
+                "value": "${sourceDir}/../sdk/macos-deps-qt6-2024-03-19-x86_64"
+              }
+            }
+        }
+    ]
+}
