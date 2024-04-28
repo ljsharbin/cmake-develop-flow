@@ -9,15 +9,11 @@
             },
             "environment": {
                 "PATH": "$penv{PATH};$env{QTDIR}/bin"
-            },
-            "vendor": {
-                "qt-project.org/Qt": {
-                    "checksum": "Sp19WUpde73JS7nK33HZMqVZTyI="
-                }
             }
         },
         {
             "name": "macos",
+            "inherits": "Qt",
             "hidden": true,
             "condition": {
               "type": "equals",
@@ -41,17 +37,21 @@
             "description": "obs-studio for macOS 11.0+ (Intel)",
             "binaryDir": "${sourceDir}/build_x86_64",
             "cacheVariables": {
-              "CMAKE_OSX_ARCHITECTURES": "x86_64",
-              "CMAKE_PREFIX_PATH": {
-                "type": "PATH",
-                "value": "${sourceDir}/../sdk/macos-deps-qt6-2024-03-19-x86_64"
-              }
+              "CMAKE_OSX_ARCHITECTURES": "x86_64"
             }
+        },
+        {
+            "name": "windows-x64",
+            "inherits": "Qt",
+            "displayName": "Default windows build (x64)",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+              },
+            "architecture": "x64",
+            "binaryDir": "${sourceDir}/build_x64",
+            "generator": "Visual Studio 16 2019"
         }
-    ],
-    "vendor": {
-        "qt-project.org/Presets": {
-            "checksum": "+knLrtcP3xTAxZGDu4uUoEIBvBs="
-        }
-    }
+    ]
 }

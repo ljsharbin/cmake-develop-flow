@@ -213,3 +213,137 @@ A: 打开Terminal，输入下面命令
 sudo spctl --master-disable
 ```
 
+## Git总结
+
+### 常用命令
+
+* git config --global user.name user-name
+* git config --global user.email email-address
+* git config --global credential.helper store
+* git config --global --list
+
+* git init
+* git add file-name
+* git commit -m "commit infomation here"
+* git status
+* git status -s
+* git log
+* git log --oneline
+* git reset --soft HEAD^
+
+    回退到上一个版本，并保留工作区和暂存区文件
+
+* git reset --hard HEAD^
+
+    回退到上一个版本，不保留工作区和暂存区文件
+
+* git reset HEAD^
+
+    回退到上一个版本，保留工作区文件，但不保留暂存区文件
+
+* git ls-files
+
+    查看暂存区文件
+
+* git reflog
+
+* git diff --cached
+* git diff HEAD
+* git diff HEAD^ HEAD
+* git diff HEAD~ HEAD
+* git diff HEAD~2 HEAD
+* git rm file-name
+* git rm --cached file-name
+
+    把文件从暂存区删除，但保留在当前工作区
+
+* git rm -r *
+
+    递归删除某个目录下的所有子目录和文件
+
+### .gitignore文件
+
+网址[https://github.com/github/gitignore](https://github.com/github/gitignore)有各种示例文件
+
+#### .gitignore文件匹配规则
+
+* 空行或以#开头的行会被git忽略
+* 使用标准的Blob模式匹配
+    
+    星号*通配任意哥字符
+    
+    问号?匹配单个字符
+    
+    中括号[]表示匹配列表中的单个字符，比如：[abc]表示a｜b｜c
+
+* 两个星号**表示匹配任意的中间目录
+* 中括号可以使用减号连接，比如：[0-9]表示任意一位数字，[a-z]表示任意一位小写字母
+* 感叹号！表示取反
+
+#### 举例说明：
+
+#忽略所有的.a文件
+
+*.a
+
+#但跟踪所有的lib.a，即便在前面忽略了.a文件
+
+!lib.a
+
+#只忽略当前目录下的TODO文件，而不忽略subdir/TODO
+
+/TODO
+
+#忽略任何目录下名为build的文件夹
+
+build/
+
+#忽略doc/notes.txt, 但不忽略doc/server/arch.txt
+
+doc/*.txt
+
+#忽略doc/目录及其所有子目录下的.pdf文件
+
+doc/**/*.pdf
+
+### 与远程仓库(github)交互
+
+#### 生成SSH Key
+
+```
+ssh-keygen -t rsa -b 4096
+```
+私钥文件：id_rsa
+
+公钥文件：id_rsa.pub
+
+#### 克隆仓库
+```
+git clone repo-address
+```
+#### 推送更新内容
+```
+git push <remote> <branch>
+```
+#### 拉取更新内容
+```
+git pull <remote>
+```
+### 关联本地仓库到远程仓库
+```
+git remote add origin <remote git url>
+git remote -v               (查看仓库别名和地址)
+git branch -M main          (指定分支名称)
+git push -u origin main     (关联本地仓库的分支到远程仓库)
+git pull origin main        (获取远程仓库的内容到本地，并自动合并)
+git fetch                   (获取远程仓库的内容到本地，但不合并)
+```
+
+
+
+
+
+
+
+
+
